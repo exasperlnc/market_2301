@@ -46,7 +46,13 @@ class Market
     total_inv
   end
 
-  def method_name
-    
+  def overstocked_items
+    overstocker = []
+    total_inventory.each do |item, item_hash|
+      if item_hash["vendors"].count > 1 && item_hash["quantity"] > 50
+        overstocker << item
+      end
+    end
+  overstocker
   end
 end

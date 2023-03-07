@@ -81,11 +81,15 @@ RSpec.describe Market do
 
   it 'checks for overstocked items' do
     @vendor1.stock(@item1, 35)
-    @vendor2.stock(@item4, 50) 
+    @vendor2.stock(@item4, 70) 
     @vendor3.stock(@item1, 65)
+    @vendor1.stock(@item2, 10)
+    @vendor2.stock(@item2, 25)
+    @vendor3.stock(@item3, 25)
+    @vendor1.stock(@item3, 26)
     @market.add_vendor(@vendor1)
     @market.add_vendor(@vendor2)
     @market.add_vendor(@vendor3)
-    expect()
+    expect(@market.overstocked_items).to eq([@item1, @item3])
   end
 end
