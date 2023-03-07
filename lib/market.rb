@@ -1,9 +1,10 @@
 require_relative 'vendor'
 class Market
-  attr_reader :name, :vendors
+  attr_reader :name, :vendors, :date
   def initialize(name)
     @name = name
     @vendors = []
+    @date = Time.now.strftime("%d/%m/%Y")
   end
 
   def add_vendor(vendor)

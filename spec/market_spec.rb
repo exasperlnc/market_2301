@@ -20,6 +20,7 @@ RSpec.describe Market do
   it 'has attributes' do
     expect(@market.name).to eq("South Pearl Street Farmers Market")
     expect(@market.vendors).to be_a(Array)
+    expect(@market.date).to eq("07/03/2023")
   end
 
   it 'adds vendors and lists names' do
