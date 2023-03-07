@@ -25,4 +25,28 @@ class Market
       vendor.item_names
     end.flatten.sort.uniq
   end
+
+  def total_inventory
+    total_inv = {}
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, num|
+        if total_inv[item]
+          total_inv[item]["vendors"] << vendor
+          total_inv[item]["quantity"] += num
+        else
+          new_hash = {}
+          total_inv[item] = new_hash
+          new_hash["vendors"] = []
+          new_hash["quantity"] = 0
+          new_hash["vendors"] << vendor
+          new_hash["quantity"] += num
+        end
+      end
+    end
+    total_inv
+  end
+
+  def method_name
+    
+  end
 end

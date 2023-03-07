@@ -58,4 +58,34 @@ RSpec.describe Market do
     @market.add_vendor(@vendor3)
     expect(@market.sorted_item_list).to eq(["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"])
   end
+
+  it 'calucaltes total inventory' do
+    @vendor1.stock(@item1, 35)
+    @vendor2.stock(@item4, 50) 
+    @vendor3.stock(@item1, 65)
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+    expect(@market.total_inventory).to be_a(Hash)
+    expect(@market.total_inventory).to eq({
+      @item1 => {
+        "vendors" => [@vendor1, @vendor3],
+        "quantity" => 100
+      },
+      @item4 => {
+        "vendors" => [@vendor2],
+        "quantity" => 50
+      }
+      })
+  end
+
+  it 'checks for overstocked items' do
+    @vendor1.stock(@item1, 35)
+    @vendor2.stock(@item4, 50) 
+    @vendor3.stock(@item1, 65)
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+    expect()
+  end
 end
