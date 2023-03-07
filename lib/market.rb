@@ -16,7 +16,11 @@ class Market
 
   def vendors_that_sell(item)
     vendors_with_item = []
-    vendors.each {|vendor| vendors_with_item << vendor if vendor.check_stock(item)}
+    vendors.each do |vendor| 
+      if vendor.check_stock(item) != 0
+        vendors_with_item << vendor
+      end
+    end
     vendors_with_item
   end
 
