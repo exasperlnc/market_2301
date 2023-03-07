@@ -92,4 +92,17 @@ RSpec.describe Market do
     @market.add_vendor(@vendor3)
     expect(@market.overstocked_items).to eq([@item1, @item3])
   end
+
+  it 'sells item' do
+    @vendor1.stock(@item1, 35)
+    @vendor2.stock(@item1, 65)
+    @market.add_vendor(vendor1)
+    @market.add_vendor(vendor2)
+    expect(@market.sell(@item1, 200)).to eq(false)
+    expect(@market.overstocked_items).to eq([@item1])
+    expect(@market.sell(@item1, 65)).to eq(true)
+    expect(@vendor1.inventory[@item1]).to eq(0)
+    expect(@vendor2.inventory[item1]).to eq(35)
+    expect(@market.overstocked_items).to eq([])
+  end
 end
