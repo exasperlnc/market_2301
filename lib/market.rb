@@ -19,4 +19,10 @@ class Market
     vendors.each {|vendor| vendors_with_item << vendor if vendor.check_stock(item)}
     vendors_with_item
   end
+
+  def sorted_item_list 
+    @vendors.each do |vendor|
+      vendor.i
+    end
+  end
 end

@@ -31,4 +31,9 @@ RSpec.describe Vendor do
       @vendor.stock(@item, 50)
       expect(@vendor.potential_revenue).to eq(25)
     end
+
+    it 'returns all names' do
+      @vendor.stock(@item, 10)
+      expect(@vendor.item_names).to eq(["peach"])
+    end
   end

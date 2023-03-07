@@ -23,4 +23,12 @@ class Vendor
       total = item.price.delete('$').to_f * num
     end.sum
   end
+
+  def item_names
+    all_names = []
+    @inventory.each do |item, num|
+      all_names << item.name if num > 0 
+    end
+    all_names
+  end
 end
