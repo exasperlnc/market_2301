@@ -20,9 +20,9 @@ class Market
     vendors_with_item
   end
 
-  def sorted_item_list 
-    @vendors.each do |vendor|
-      vendor.i
-    end
+  def sorted_item_list
+    @vendors.map do |vendor|
+      vendor.item_names
+    end.flatten.sort.uniq
   end
 end
