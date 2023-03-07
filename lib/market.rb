@@ -55,4 +55,23 @@ class Market
     end
   overstocker
   end
+
+  def sell(item, quantity)
+    if total_inventory[item]["quantity"] < quantity
+      return false
+    else
+      counter = quantity
+      #over each vendor
+      @vendors.each do |vendor|
+        #until item number == 0 or counter == 0
+        until vendor.inventory[item] == 0 || counter == 0
+          #counter -=1
+          counter -= 1
+          #item number -=1
+          vendor.inventory[item] -= 1
+        end
+      end
+      return true
+    end
+  end
 end
